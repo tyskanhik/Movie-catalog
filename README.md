@@ -1,59 +1,73 @@
-# Movie
+# Каталог фильмов на Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.1.
+![Превью приложения](image.png)
 
-## Development server
+## Описание проекта
 
-To start a local development server, run:
+Каталог фильмов - это одностраничное приложение (SPA), разработанное на Angular, которое позволяет:
+- Просматривать список фильмов
+- Искать фильмы по названию, режиссеру или жанру
+- Просматривать детальную информацию о фильме в модальном окне
 
-```bash
-ng serve
+## Структура проекта
+
+```text
+src/
+├── app/
+│ ├── components/
+| | ├── loader/ - Компонент индикатора загрузки
+│ │ ├── movie-card/ - Карточка фильма для списка
+│ │ └── movie-dialog/ - Модальное окно с деталями фильма
+│ │
+│ ├── services/ - Сервисы приложения
+│ ├── models/ - Модели данных
+│ └── app.component.ts - Главный компонент
+│
+├── assets/ - Статические ресурсы постеры фильмов
+│
+├── styles/ - Глобальные стили
+│ ├── _mixins.scss - SCSS миксины
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Функциональность
 
-## Code scaffolding
+### Основные возможности
+- Отображение списка фильмов в виде карточек
+- Поиск с debounce (задержкой 300мс) и фильтрацией
+- Анимация открытия/закрытия модального окна
+- Адаптивный дизайн для мобильных устройств
+- Индикатор загрузки данных
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Технические особенности
+- Использование Angular Signals для управления состоянием
+- Standalone компоненты
+- Оптимизированный рендеринг списка с trackBy
+- Кастомные SCSS миксины для адаптивного дизайна
 
+## Установка и запуск
+
+1. Клонировать репозиторий:
 ```bash
-ng generate component component-name
+git clone https://github.com/tyskanhik/Movie-catalog.git
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+2. Установить зависимости:
 ```bash
-ng generate --help
+npm install
 ```
 
-## Building
-
-To build the project run:
-
+3. Запустить dev-сервер:
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Приложение будет доступно по адресу: http://localhost:4200
 
-## Running unit tests
+## Используемые технологии
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- <img src="https://angular.io/assets/images/logos/angular/angular.svg" width="16" alt="Angular"> **Angular 16+**
+- **RxJS** - Реактивное программирование
+- ⚡ **Signals** - Система реактивности Angular
+- <img src="https://www.typescriptlang.org/favicon-32x32.png" width="16" alt="TypeScript"> **TypeScript**
+-**SCSS**
+- <img src="https://www.w3.org/html/logo/downloads/HTML5_Badge_256.png" width="16" alt="HTML5"> **HTML5**
