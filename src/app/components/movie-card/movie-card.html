@@ -1,0 +1,23 @@
+<div class="movie-card">
+  <div class="poster-container">
+    <img 
+      [src]="movie.posterUrl" 
+      [alt]="movie.title" 
+      loading="lazy"
+      class="movie-poster"
+    />
+    <div class="rating-badge">{{ movie.rating.toFixed(1) }}</div>
+  </div>
+  <div class="movie-info">
+    <h3 class="movie-title">{{ movie.title }}</h3>
+    <div class="movie-meta">
+      <span>{{ movie.year }}</span> • 
+      <span>{{ movie.duration }}</span>
+    </div>
+    <div class="movie-genres">
+      @for (genre of movie.genres; track $index) {
+        <span class="genre-tag">{{ genre }}</span>
+      }
+    </div>
+  </div>
+</div>
