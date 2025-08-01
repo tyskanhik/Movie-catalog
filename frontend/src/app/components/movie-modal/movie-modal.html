@@ -1,0 +1,43 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="stopPropagation($event)">
+    @if (loading()) {
+      <div class="loading-spinner">Загрузка...</div>
+    } @else if (movie()) {
+      <div class="modal-body">
+        <div class="poster-column">
+          <img 
+            [src]="movie()!.posterUrl" 
+            [alt]="movie()!.title" 
+            class="modal-poster"
+          />
+        </div>
+        <div class="info-column">
+          <h2 class="modal-title">{{ movie()!.title }}</h2>
+          <div class="movie-meta">
+            <span>{{ movie()!.year }}</span> •
+            <span>{{ movie()!.duration }}</span> •
+            <span>{{ movie()!.ageRating }}</span>
+          </div>
+          <div class="genres">
+            @for (genre of movie()!.genres; track $index) {
+              <span class="genre-badge">{{ genre }}</span>
+            }
+          </div>
+          <div class="director">
+            <strong>Режиссер:</strong> {{ movie()!.director }}
+          </div>
+          <div class="rating">
+            <strong>Рейтинг:</strong> {{ movie()!.rating.toFixed(1) }}
+          </div>
+          <div class="plot">
+            <h3>Описание</h3>
+            <p>{{ movie()!.plot }}</p>
+          </div>
+        </div>
+      </div>
+      <button class="close-button" (click)="onClose()">×</button>
+    } @else {
+      <div class="error-message">Фильм не найден</div>
+    }
+  </div>
+</div>
