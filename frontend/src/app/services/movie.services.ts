@@ -8,7 +8,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class MovieService {
-  private apiUrl = 'http://localhost:8080/api/movies';
+  private apiUrl = 'http://localhost:8080';
   movies = signal<Movie[]>([]);
   allMovies = signal<Movie[]>([]);
   loading = signal(false);
@@ -20,7 +20,11 @@ export class MovieService {
     this.loading.set(true);
     this.error.set(null);
 
-    return this.http.get<Movie[]>(this.apiUrl).pipe(
+    return this.http.get<Movie[]>(`${this.apiUrl}/api/movies`).pipe(
+      map(movies => movies.map(movie => ({
+        ...movie,
+        posterUrl: `${this.apiUrl}/media/${movie.posterUrl}`
+      }))),
       tap({
         next: movies => {
           this.allMovies.set(movies);
